@@ -27,7 +27,7 @@ func GenerateABIInterface() error {
 
     // Install abigen
     log.Println("Downloading abigen...")
-    if err := sh.RunV("go", "install", "github.com/ethereum/go-ethereum/cmd/abigen"); err != nil {
+    if err := sh.RunV("go", "install", "github.com/ethereum/go-ethereum/cmd/abigen@latest"); err != nil {
         return err
     }
 
