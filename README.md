@@ -13,6 +13,6 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 # Download and build program
 git clone https://github.com/k0tletka/gotbit-balance-monitoring-task
 cd ./gotbit-balance-monitoring-task
-mage build
+mage -v build
 ./build/balance-monitoring
 ```
