@@ -18,6 +18,12 @@ const (
     contractInterfacePackage = "tether_contract"
 )
 
+var (
+    modEnv = map[string]string{
+        "CGO_ENABLED": "0",
+    }
+)
+
 func GenerateABIInterface() error {
     // Check if generated file already exist
     contractInterfaceLocation := filepath.Join(contractInterfacePackage, contractInterfacePackage + ".go")
@@ -27,7 +33,7 @@ func GenerateABIInterface() error {
 
     // Install abigen
     log.Println("Downloading abigen...")
-    if err := sh.RunV("go", "install", "github.com/ethereum/go-ethereum/cmd/abigen@latest"); err != nil {
+    if err := sh.RunWithV(modEnv, "go", "install", "github.com/ethereum/go-ethereum/cmd/abigen@latest"); err != nil {
         return err
     }
 
@@ -65,5 +71,5 @@ func Build() error {
     mg.Deps(GenerateABIInterface)
     mg.Deps(Tidy)
 
-    return sh.RunV("go", "build", "-o", filepath.Join(buildPath, executableName), projectName)
+    return sh.RunV(modEnv, "go", "build", "-o", filepath.Join(buildPath, executableName), projectName)
 }
