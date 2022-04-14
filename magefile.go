@@ -4,7 +4,6 @@ package main
 
 import (
     "path/filepath"
-    "path"
     "net/http"
     "os/exec"
     "os"
@@ -21,7 +20,7 @@ const (
 
 func GenerateABIInterface() error {
     // Check if generated file already exist
-    contractInterfaceLocation := path.Join(contractInterfacePackage, contractInterfacePackage + ".go")
+    contractInterfaceLocation := filepath.Join(contractInterfacePackage, contractInterfacePackage + ".go")
     if _, err := os.Stat(contractInterfaceLocation); !os.IsNotExist(err) {
         return nil
     }
