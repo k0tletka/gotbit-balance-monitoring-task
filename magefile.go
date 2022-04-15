@@ -71,5 +71,5 @@ func Build() error {
     mg.Deps(GenerateABIInterface)
     mg.Deps(Tidy)
 
-    return sh.RunV(modEnv, "go", "build", "-o", filepath.Join(buildPath, executableName), projectName)
+    return sh.RunV("go", "build", "-o", filepath.Join(buildPath, executableName), projectName)
 }

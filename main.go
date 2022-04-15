@@ -49,7 +49,7 @@ func main() {
         timeoutCtx, _ = context.WithTimeout(ctx, 10 * time.Second)
 
         if balance, err := contractCaller.BalanceOf(&bind.CallOpts{Context: timeoutCtx}, userAddress); err == nil {
-            log.Println("Balance of account: ", balance)
+            log.Println("Balance of account:", balance)
         } else {
             log.Fatalln(err)
         }
