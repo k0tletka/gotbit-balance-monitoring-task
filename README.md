@@ -14,5 +14,5 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 git clone https://github.com/k0tletka/gotbit-balance-monitoring-task
 cd ./gotbit-balance-monitoring-task
 mage -v build
-./build/balance-monitoring
+./build/balance-monitoring -u 0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852
 ```

@@ -6,6 +6,7 @@ import (
     "syscall"
     "log"
     "time"
+    "flag"
 
     "github.com/k0tletka/gotbit-balance-monitoring-task/tether_contract"
 
@@ -21,10 +22,21 @@ const (
 
 var (
     contractAddress = common.HexToAddress("0xdAC17F958D2ee523a2206206994597C13D831ec7")
-    userAddress = common.HexToAddress("0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852")
+)
+
+// Flags
+var (
+    flagUserAddress = flag.String("u", "", "User address of target balance")
 )
 
 func main() {
+    flag.Parse()
+    if !flag.Parsed() {
+        flag.PrintDefaults()
+    }
+
+    userAddress := common.HexToAddress(*flagUserAddress)
+
     ctx, _ := signal.NotifyContext(context.Background(),
         syscall.SIGINT,
         syscall.SIGTERM,
